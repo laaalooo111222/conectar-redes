@@ -1,0 +1,31 @@
+El presente codigo se encarga de conectar el equipo de computo del usuario a una red.
+Primeramente se le deben dar permisos de ejecución:
+chmod 755 redes.sh
+
+Una vez hecho esto, se debe ejecutar.
+Estando en el mismo directorio que el codigo, hacemos:
+./redes.sh
+
+Al ejecutar ese comando, el codigo comenzara a ejecutarse.
+
+Lo primero que se muestra son todas las interfaces de red disponibles.
+Entonces, se le preguntara al usuario poner el nombre de la interfaz que desee editar. Una vez elegida la interfaz, se preguntara si se quiere activar (con up) o desactivar (con down).
+Dependiendo de la elección del usuario, la interfaz o se activara o se desactivara.
+
+Despues, pasa a la conexión con la red.
+Se le preguntara al usuario si se desea conectar de manera inalámbrica (con w) o de manera cableada (con c). 
+Si el usuario elige conectarse de manera inalámbrica, el codigo mostrara todas las redes wifi disponibles, al mismo tiempo que le solicita al usuario introducir el nombre y 
+contraseña de la red. Una vez introducidas, el codigo generara una clave precompartida, que se usa para configurar la conexión Wifi. Al mismo tiempo, guarda los resultados 
+de este comando en el archivo wpa_supplicant.conf (PUEDE QUE SEA NECESARIO CAMBIAR ESTA PARTE DEL CODIGO DEPENDIENDO DE DONDE SE TENGA EL ARCHIVO DE CONFIGURACION!!!). 
+Entonces, aplicara la configuración en la interfaz usando el archivo de configuración con el comando wpa_supplicant. Y entonces, se conectara a la red wifi.
+Si el usuario elige conectarse de manera cableada, simplemente activara la interfaz y ya.
+
+Finalmente pasa a la configuración de la IP.
+Se le preguntara al usuario si se desea configurar con DHCP (con d) o con la ip fija (con f).
+Si el usuario elige usar dhcp, el programa usara el comando dhclient (junto a la interfaz seleccionada) para asignar la ip, no se necesita hacer nada mas, y el programa terminara.
+Si el usuario elige configurar la ip de manera fija, entonces se le solicitara al usuario configurar la ip de manera manual, introduciendo la ip, mascara y puerta de enlace a usar, parametros 
+que serán utilizados en los comandos respectivos de ip addr add e ip route add.
+
+El programa concluye después de la configuración de la IP. Si se realizo todo bien, no deberían de haber problemas y el usuario debería estar conectado a la red.
+
+Realizado por Eduardo Ruiz Ramirez, a 1 de marzo de 2025
